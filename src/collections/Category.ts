@@ -1,25 +1,28 @@
 import type { CollectionConfig } from 'payload'
 
-export const Media: CollectionConfig = {
-  slug: 'media',
+export const Category: CollectionConfig = {
+  slug: 'category',
   access: {
     read: () => true,
   },
+  admin: {
+    useAsTitle: 'name',
+  },
   fields: [
     {
-      name: 'alt',
+      name: 'name',
       type: 'text',
+      label: 'Название категории',
       required: true,
       localized: true,
     },
   ],
   labels: {
     singular: {
-      ru: 'Медиа'
+      ru: 'Категория'
     },
     plural: {
-      ru: 'Медиа'
+      ru: 'Категории'
     }
   },
-  upload: true,
 }

@@ -4,10 +4,19 @@ export const Users: CollectionConfig = {
   slug: 'users',
   admin: {
     useAsTitle: 'email',
+    group: 'Пользователи',
   },
   auth: true,
   fields: [
     // Email added by default
     // Add more fields as needed
   ],
+  labels: {
+    singular: {
+      ru: 'Пользователь'
+    },
+    plural: {
+      ru: 'Пользователи'
+    }
+  },
 }
