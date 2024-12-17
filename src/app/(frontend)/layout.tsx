@@ -16,7 +16,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body className="bg-stone-100">
         <div className="container flex flex-col min-h-screen mx-auto bg-white">
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 px-2 md:px-8">{children}</main>
           <Footer />
         </div>
       </body>

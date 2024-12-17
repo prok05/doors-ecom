@@ -14,6 +14,9 @@ importers:
       '@emotion/styled':
         specifier: ^11.14.0
         version: 11.14.0(@emotion/react@11.14.0(@types/react@19.0.1)(react@19.0.0))(@types/react@19.0.1)(react@19.0.0)
+      '@mui/icons-material':
+        specifier: ^6.2.0
+        version: 6.2.0(@mui/material@6.2.0(@emotion/react@11.14.0(@types/react@19.0.1)(react@19.0.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.0.1)(react@19.0.0))(@types/react@19.0.1)(react@19.0.0))(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@types/react@19.0.1)(react@19.0.0)
       '@mui/material':
         specifier: ^6.2.0
         version: 6.2.0(@emotion/react@11.14.0(@types/react@19.0.1)(react@19.0.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.0.1)(react@19.0.0))(@types/react@19.0.1)(react@19.0.0))(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -35,6 +38,9 @@ importers:
       '@radix-ui/react-navigation-menu':
         specifier: ^1.2.2
         version: 1.2.2(@types/react-dom@19.0.1)(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@radix-ui/react-slot':
+        specifier: ^1.1.1
+        version: 1.1.1(@types/react@19.0.1)(react@19.0.0)
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.49)
@@ -47,6 +53,9 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
+      embla-carousel-react:
+        specifier: ^8.5.1
+        version: 8.5.1(react@19.0.0)
       graphql:
         specifier: ^16.8.1
         version: 16.9.0
@@ -1216,6 +1225,17 @@ packages:
 
   '@mui/core-downloads-tracker@6.2.0':
     resolution: {integrity: sha512-Nn5PSkUqbDrvezpiiiYZiAbX4SFEiy3CbikUL6pWOXEUsq+L1j50OOyyUIHpaX2Hr+5V5UxTh+fPeC4nsGNhdw==}
+
+  '@mui/icons-material@6.2.0':
+    resolution: {integrity: sha512-WR1EEhGOSvxAsoTSzWZBlrWFjul8wziDrII4rC3PvMBHhBYBqEc2n/0aamfFbwkH5EiYb96aqc6kYY6tB310Sw==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      '@mui/material': ^6.2.0
+      '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@mui/material@6.2.0':
     resolution: {integrity: sha512-7FXXUPIyYzP02a7GvqwJ7ocmdP+FkvLvmy/uxG1TDmTlsr8nEClQp75uxiVznJqAY/jJy4d+Rj/fNWNxwidrYQ==}
@@ -2536,6 +2556,19 @@ packages:
 
   electron-to-chromium@1.5.73:
     resolution: {integrity: sha512-8wGNxG9tAG5KhGd3eeA0o6ixhiNdgr0DcHWm85XPCphwZgD1lIEoi6t3VERayWao7SF7AAZTw6oARGJeVjH8Kg==}
+
+  embla-carousel-react@8.5.1:
+    resolution: {integrity: sha512-z9Y0K84BJvhChXgqn2CFYbfEi6AwEr+FFVVKm/MqbTQ2zIzO1VQri6w67LcfpVF0AjbhwVMywDZqY4alYkjW5w==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.1 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+
+  embla-carousel-reactive-utils@8.5.1:
+    resolution: {integrity: sha512-n7VSoGIiiDIc4MfXF3ZRTO59KDp820QDuyBDGlt5/65+lumPHxX2JLz0EZ23hZ4eg4vZGUXwMkYv02fw2JVo/A==}
+    peerDependencies:
+      embla-carousel: 8.5.1
+
+  embla-carousel@8.5.1:
+    resolution: {integrity: sha512-JUb5+FOHobSiWQ2EJNaueCNT/cQU9L6XWBbWmorWPQT9bkbk+fhsuLr8wWrzXKagO3oWszBO7MSx+GfaRk4E6A==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -5907,6 +5940,14 @@ snapshots:
 
   '@mui/core-downloads-tracker@6.2.0': {}
 
+  '@mui/icons-material@6.2.0(@mui/material@6.2.0(@emotion/react@11.14.0(@types/react@19.0.1)(react@19.0.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.0.1)(react@19.0.0))(@types/react@19.0.1)(react@19.0.0))(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@types/react@19.0.1)(react@19.0.0)':
+    dependencies:
+      '@babel/runtime': 7.26.0
+      '@mui/material': 6.2.0(@emotion/react@11.14.0(@types/react@19.0.1)(react@19.0.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.0.1)(react@19.0.0))(@types/react@19.0.1)(react@19.0.0))(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react: 19.0.0
+    optionalDependencies:
+      '@types/react': 19.0.1
+
   '@mui/material@6.2.0(@emotion/react@11.14.0(@types/react@19.0.1)(react@19.0.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.0.1)(react@19.0.0))(@types/react@19.0.1)(react@19.0.0))(@types/react@19.0.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@babel/runtime': 7.26.0
@@ -7419,6 +7460,18 @@ snapshots:
       semver: 7.6.3
 
   electron-to-chromium@1.5.73: {}
+
+  embla-carousel-react@8.5.1(react@19.0.0):
+    dependencies:
+      embla-carousel: 8.5.1
+      embla-carousel-reactive-utils: 8.5.1(embla-carousel@8.5.1)
+      react: 19.0.0
+
+  embla-carousel-reactive-utils@8.5.1(embla-carousel@8.5.1):
+    dependencies:
+      embla-carousel: 8.5.1
+
+  embla-carousel@8.5.1: {}
 
   emoji-regex@8.0.0: {}
 

@@ -24,8 +24,5 @@ export async function Header() {
     }
   })
 
-  console.log(categories.docs)
-  console.log(subcategories)
-
   return <HeaderClient categories={categories.docs} subcategories={subcategories.docs} />
 }

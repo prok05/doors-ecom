@@ -21,5 +21,7 @@ export const Media: CollectionConfig = {
       ru: 'Медиа'
     }
   },
-  upload: true,
+  upload: {
+    staticDir: 'public/media'
+  },
 }
