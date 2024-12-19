@@ -23,12 +23,12 @@ import Divider from '@mui/material/Divider';
 
 export type Props = {
   categories: Category[]
-  subcategories: { category: Category; id: number; name: string }[]
+  // subcategories: { category: Category; id: number; name: string }[]
 }
 
 export const HeaderClient: React.FC<Props> = (props) => {
   const { categories } = props
-  const { subcategories } = props
+  // const { subcategories } = props
 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [expandedCategory, setExpandedCategory] = useState<number | null>(null);
@@ -45,69 +45,6 @@ export const HeaderClient: React.FC<Props> = (props) => {
   };
 
   return (
-    // <header className="bg-white py-6 px-8 flex flex-col">
-    //   <div className="flex items-center justify-end mb-4">
-    //     <nav className="mr-6">
-    //       <Link className="mr-3 text-gray-800 hover:text-primary" href="/about">
-    //         О компании
-    //       </Link>
-    //       <Link className="mr-3 text-gray-800 hover:text-primary" href="/contacts">
-    //         Доставка
-    //       </Link>
-    //       <Link className="text-gray-800 hover:text-primary" href="/about">
-    //         Контакты
-    //       </Link>
-    //     </nav>
-    //     <div>
-    //       <Typography variant="h6" fontWeight="bold">
-    //         8 (999) 999-99-99
-    //       </Typography>
-    //     </div>
-    //   </div>
-    //
-    //   <div className="flex items-center mx-auto">
-    //     <div className="mr-10">
-    //       <Link href="/">
-    //         <Image alt="Логотип" height="80" src={logo} />
-    //       </Link>
-    //     </div>
-    //     <div className="bg-stone-100 rounded-2xl">
-    //       <NavigationMenu>
-    //         <NavigationMenuList>
-    //           {categories?.map((category) => {
-    //             return (
-    //               <NavigationMenuItem key={category.id}>
-    //                 <NavigationMenuTrigger className="px-8 py-8 hover:bg-white bg-stone-100 outline-none">
-    //                   <Typography fontWeight="bold" variant="subtitle1">
-    //                     {category.name}
-    //                   </Typography>
-    //                 </NavigationMenuTrigger>
-    //                 <NavigationMenuContent className="flex items-center">
-    //                   <ul className="min-w-[400px]">
-    //                     {subcategories
-    //                       ?.filter((sc) => sc.category.id === category.id)
-    //                       .map((sc) => {
-    //                         return (
-    //                           <li className="p-4 hover:bg-gray-100 cursor-pointer" key={sc.id}>
-    //                             <NavigationMenuLink>{sc.name}</NavigationMenuLink>
-    //                           </li>
-    //                         )
-    //                       })}
-    //                   </ul>
-    //                 </NavigationMenuContent>
-    //               </NavigationMenuItem>
-    //             )
-    //           })}
-    //         </NavigationMenuList>
-    //       </NavigationMenu>
-    //     </div>
-    //     <div className="ml-10">
-    //       <Link href="/cart">
-    //         <ShoppingCartOutlinedIcon fontSize="large" />
-    //       </Link>
-    //     </div>
-    //   </div>
-    // </header>
     <header className="bg-white md:py-6 md:px-8">
       {/* Desktop Header */}
       <div className="hidden md:flex flex-col">
@@ -141,32 +78,56 @@ export const HeaderClient: React.FC<Props> = (props) => {
           <div className="bg-stone-100 rounded-2xl">
             <NavigationMenu>
               <NavigationMenuList>
-                {categories?.map((category) => (
-                  <NavigationMenuItem key={category.id} className="relative">
+                {/*{categories?.map((category) => (*/}
+                {/*  <NavigationMenuItem key={category.id} className="relative">*/}
+                {/*    <NavigationMenuTrigger className="px-8 py-8 hover:bg-white bg-stone-100 outline-none">*/}
+                {/*      <Typography fontWeight="bold" variant="subtitle1">*/}
+                {/*        {category.name}*/}
+                {/*      </Typography>*/}
+                {/*    </NavigationMenuTrigger>*/}
+                {/*    <NavigationMenuContent className="absolute left-0 w-full bg-white shadow-lg border-t border-gray-200">*/}
+                {/*      <ul className="min-w-[400px]">*/}
+                {/*        {subcategories*/}
+                {/*          ?.filter((sc) => sc.category.id === category.id)*/}
+                {/*          .map((sc) => (*/}
+                {/*            <li className="p-4 hover:bg-gray-100 cursor-pointer" key={sc.id}>*/}
+                {/*              <NavigationMenuLink>{sc.name}</NavigationMenuLink>*/}
+                {/*            </li>*/}
+                {/*          ))}*/}
+                {/*      </ul>*/}
+                {/*    </NavigationMenuContent>*/}
+                {/*  </NavigationMenuItem>*/}
+                {/*))}*/}
+                {categories.filter((category) => !category.parentCategory).map((filteredCategory) => {
+                  return <NavigationMenuItem key={filteredCategory.id} className="relative">
                     <NavigationMenuTrigger className="px-8 py-8 hover:bg-white bg-stone-100 outline-none">
-                      <Typography fontWeight="bold" variant="subtitle1">
-                        {category.name}
-                      </Typography>
+                      <Typography fontWeight="bold" variant="subtitle1">{filteredCategory.name}</Typography>
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className="absolute left-0 w-full bg-white shadow-lg border-t border-gray-200">
+                    <NavigationMenuContent
+                      className="absolute left-0 w-full bg-white shadow-lg border-t border-gray-200">
                       <ul className="min-w-[400px]">
-                        {subcategories
-                          ?.filter((sc) => sc.category.id === category.id)
-                          .map((sc) => (
-                            <li className="p-4 hover:bg-gray-100 cursor-pointer" key={sc.id}>
-                              <NavigationMenuLink>{sc.name}</NavigationMenuLink>
-                            </li>
-                          ))}
+                        {categories
+                            .filter((subCategory) => {
+                              // Проверяем, является ли категория подкатегорией текущей
+                              if (typeof subCategory.parentCategory === 'object') {
+                                return subCategory?.parentCategory?.id === filteredCategory.id;
+                              }
+                              return subCategory.parentCategory === filteredCategory.id;
+                            }).map((subCategory) => (
+                              <li className="p-4 hover:bg-gray-100 cursor-pointer" key={subCategory.id}>
+                                <NavigationMenuLink href={`/category/${filteredCategory.slug}/${subCategory.slug}`}>{subCategory.name}</NavigationMenuLink>
+                              </li>
+                            ))}
                       </ul>
                     </NavigationMenuContent>
                   </NavigationMenuItem>
-                ))}
+                })}
               </NavigationMenuList>
             </NavigationMenu>
           </div>
           <div className="ml-10">
             <Link href="/cart">
-              <ShoppingCartOutlinedIcon fontSize="large" />
+              <ShoppingCartOutlinedIcon className="hover:text-primary transition-colors" fontSize="large" />
             </Link>
           </div>
         </div>
@@ -198,22 +159,23 @@ export const HeaderClient: React.FC<Props> = (props) => {
             </Typography>
             <Divider />
             <ul className="mt-2">
-              {categories?.map((category) => (
-                <li key={category.id} className="mb-2">
-                  <Typography variant="subtitle1" fontWeight="bold">
-                    {category.name}
-                  </Typography>
+              {categories.filter((category) => !category.parentCategory).map((filteredCategory) => {
+                return <li key={filteredCategory.id} className="mb-2">
+                  <Typography variant="subtitle1" fontWeight="bold">{filteredCategory.name}</Typography>
                   <ul className="ml-4">
-                    {subcategories
-                      ?.filter((sc) => sc.category.id === category.id)
-                      .map((sc) => (
-                        <li key={sc.id} className="text-gray-700 hover:text-primary mt-2">
-                          <Link href={`/subcategory/${sc.id}`}>{sc.name}</Link>
-                        </li>
-                      ))}
+                    {categories
+                      .filter((subCategory) => {
+                        if (typeof subCategory.parentCategory === 'object') {
+                          return subCategory?.parentCategory?.id === filteredCategory.id
+                        }
+                        return subCategory.parentCategory === filteredCategory.id
+                      }).map((subCategory) => (
+                                  <li key={subCategory.id} className="text-gray-700 hover:text-primary mt-2">
+                                <Link href={`/category/${filteredCategory.slug}/${subCategory.slug}`}>{subCategory.name}</Link>
+                              </li>
+                        ))}
                   </ul>
-                </li>
-              ))}
+                </li>})}
             </ul>
 
             {/* Links */}

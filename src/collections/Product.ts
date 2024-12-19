@@ -10,10 +10,10 @@ export const Product: CollectionConfig = {
   },
   fields: [
     {
-      name: 'subcategory',
-      label: 'Подкатегория',
+      name: 'category',
+      label: 'Категория',
       type: 'relationship',
-      relationTo: 'subcategory',
+      relationTo: 'category',
       required: true,
     },
     {
@@ -29,7 +29,13 @@ export const Product: CollectionConfig = {
       required: true,
     },
     {
-      name: 'color',
+      name: 'media',
+      label: 'Фото',
+      type: 'relationship',
+      relationTo: 'media'
+    },
+    {
+      name: 'colors',
       label: 'Цвета',
       type: 'relationship',
       relationTo: 'color',

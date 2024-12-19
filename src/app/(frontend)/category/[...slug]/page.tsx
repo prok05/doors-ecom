@@ -13,12 +13,7 @@ export default async function Page() {
 
   return (
     <div>
-      <div className="flex justify-center mb-12">
-        <BannerCarousel banners={bannerImages.docs} />
-      </div>
-      <div className="mb-4">
-        <AboutSection />
-      </div>
+      Page
 
     </div>
   )

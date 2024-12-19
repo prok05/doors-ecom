@@ -6,20 +6,17 @@ import { getPayload } from 'payload'
 export default async function Page() {
   const payload = await getPayload({ config: configPromise })
 
-  const bannerImages = await payload.find({
-    collection: 'banner',
+  const categories = await payload.find({
+    collection: 'category',
     pagination: false,
   })
 
   return (
     <div>
-      <div className="flex justify-center mb-12">
-        <BannerCarousel banners={bannerImages.docs} />
-      </div>
-      <div className="mb-4">
-        <AboutSection />
-      </div>
-
+      <h2>Категории</h2>
+      {categories.docs.filter((category) => !category.parentCategory).map((filteredCategory) => {
+        return <li key={filteredCategory.id}>{filteredCategory.name}</li>
+      })}
     </div>
   )
 }

@@ -14,9 +14,9 @@ export interface Config {
     users: User;
     media: Media;
     category: Category;
-    subcategory: Subcategory;
     product: Product;
     color: Color;
+    banner: Banner;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -26,9 +26,9 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     category: CategorySelect<false> | CategorySelect<true>;
-    subcategory: SubcategorySelect<false> | SubcategorySelect<true>;
     product: ProductSelect<false> | ProductSelect<true>;
     color: ColorSelect<false> | ColorSelect<true>;
+    banner: BannerSelect<false> | BannerSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -108,17 +108,8 @@ export interface Media {
 export interface Category {
   id: number;
   name: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "subcategory".
- */
-export interface Subcategory {
-  id: number;
-  category: number | Category;
-  name: string;
+  slug?: string | null;
+  parentCategory?: (number | null) | Category;
   updatedAt: string;
   createdAt: string;
 }
@@ -128,10 +119,11 @@ export interface Subcategory {
  */
 export interface Product {
   id: number;
-  subcategory: number | Subcategory;
+  category: number | Category;
   name: string;
   description: string;
-  color: number | Color;
+  media?: (number | null) | Media;
+  colors: number | Color;
   sizes: {
     size: string;
     price: string;
@@ -163,6 +155,16 @@ export interface Color {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "banner".
+ */
+export interface Banner {
+  id: number;
+  banner: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -181,16 +183,16 @@ export interface PayloadLockedDocument {
         value: number | Category;
       } | null)
     | ({
-        relationTo: 'subcategory';
-        value: number | Subcategory;
-      } | null)
-    | ({
         relationTo: 'product';
         value: number | Product;
       } | null)
     | ({
         relationTo: 'color';
         value: number | Color;
+      } | null)
+    | ({
+        relationTo: 'banner';
+        value: number | Banner;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -273,16 +275,8 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface CategorySelect<T extends boolean = true> {
   name?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "subcategory_select".
- */
-export interface SubcategorySelect<T extends boolean = true> {
-  category?: T;
-  name?: T;
+  slug?: T;
+  parentCategory?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -291,10 +285,11 @@ export interface SubcategorySelect<T extends boolean = true> {
  * via the `definition` "product_select".
  */
 export interface ProductSelect<T extends boolean = true> {
-  subcategory?: T;
+  category?: T;
   name?: T;
   description?: T;
-  color?: T;
+  media?: T;
+  colors?: T;
   sizes?:
     | T
     | {
@@ -322,6 +317,15 @@ export interface ProductSelect<T extends boolean = true> {
 export interface ColorSelect<T extends boolean = true> {
   name?: T;
   hex?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "banner_select".
+ */
+export interface BannerSelect<T extends boolean = true> {
+  banner?: T;
   updatedAt?: T;
   createdAt?: T;
 }

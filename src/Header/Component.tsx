@@ -12,17 +12,21 @@ export async function Header() {
     pagination: false,
     select: {
       name: true,
+      parentCategory: true,
+      slug: true
     }
   })
 
-  const subcategories = await payload.find({
-    collection: 'subcategory',
-    pagination: false,
-    select: {
-      name: true,
-      category: true,
-    }
-  })
+  console.log(categories.docs)
 
-  return <HeaderClient categories={categories.docs} subcategories={subcategories.docs} />
+  // const subcategories = await payload.find({
+  //   collection: 'subcategory',
+  //   pagination: false,
+  //   select: {
+  //     name: true,
+  //     category: true,
+  //   }
+  // })
+
+  return <HeaderClient categories={categories.docs} />
 }
